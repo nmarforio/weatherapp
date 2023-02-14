@@ -15,7 +15,6 @@ export function useFetch(url) {
       const response = await fetch(url);
       const data = await response.json();
       setIsGoodWeather(data);
-      console.log(data);
     }
   } catch (error) {
     console.log(error);
