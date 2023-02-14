@@ -2,13 +2,11 @@ import "./App.css";
 import Form from "./Components/Form/Form.jsx";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
-import { useState } from "react";
 
 function App() {
-  // const [activities, setActivities] = useLocalStorageState("activitie", {
-  //   defaultvalue: [],
-  // });
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useLocalStorageState("activitie", {
+    defaultValue: [],
+  });
 
   function handelAddActivity(event) {
     event.preventDefault();
