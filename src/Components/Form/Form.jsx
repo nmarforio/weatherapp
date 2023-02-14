@@ -4,7 +4,15 @@ const Form = () => {
 
   function onAddActivity(event) {
     event.preventDefault()
-    console.log('is this working')
+
+    // const myFormData = new FormData(event.target);
+    // const formDataObj = Object.fromEntries(myFormData.entries());
+    // console.log(formDataObj)
+
+    const input = document.getElementById('name').value
+    const checkBox = document.getElementById('isForGoodWeather').checked
+
+
   }
 
   return (
@@ -12,8 +20,8 @@ const Form = () => {
       <h2>Add new Activity</h2>
       <label htmlFor="name">Name:</label>
       <input id='name' name='name' type="text" />
-      <label htmlFor="activityType">Good weather Activity</label>
-      <input id='activityType' name='activityType' type="checkbox" />
+      <label htmlFor="isForGoodWeather">Good weather Activity</label>
+      <input id='isForGoodWeather' name='isForGoodWeather' type="checkbox" />
       <button>Submit</button>
     </form>
   )
