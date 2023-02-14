@@ -3,15 +3,31 @@ import Form from "./Components/Form/Form.jsx";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import List from "./Components/List/List";
+import { useEffect, useState } from 'react'
 
 function App() {
   const [activities, setActivities] = useLocalStorageState("activitie", {
     defaultValue: [],
   });
+  const [isGoodWeather, setIsGoodWeather] = useState({})
 
-  const isGoodWeather = true;
+  const URL = 'https://example-apis.vercel.app/api/weather'
+
+  useEffect(() => {
+    try {
+      async function getAPI() {
+        const response = await fetch(URL)
+        const data = await response.json()
+        setIsGoodWeather(data)
+      }
+      getAPI()
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
+
   const filteredActivities = activities.filter(
-    (activity) => activity.isForGoodWeather === isGoodWeather
+    (activity) => activity.isForGoodWeather === isGoodWeather.isGoodWeather
   );
 
   function handelAddActivity(event) {
