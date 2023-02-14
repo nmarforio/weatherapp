@@ -1,10 +1,13 @@
-const List = ({ activitiesList }) => {
+const List = ({ activitiesList, weather }) => {
   return (
-    <ul>
-      {activitiesList.map((activity) => (
-        <li key={activity.id}> {activity.name}</li>
-      ))}
-    </ul>
+    <>
+      <h2>{weather ? "Go outside" : "Stay Home"}</h2>
+      <ul>
+        {activitiesList.map((activity) => (
+          <li key={activity.id}> {activity.name}</li>
+        ))}
+      </ul>
+    </>
   );
 };
 

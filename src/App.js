@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      <List activitiesList={filteredActivities} />
+      <List activitiesList={filteredActivities} weather={isGoodWeather} />
       <Form onAddActivity={handelAddActivity} />
     </div>
   );
