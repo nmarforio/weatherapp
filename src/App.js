@@ -32,7 +32,6 @@ function App() {
 
   function handelAddActivity(event) {
     event.preventDefault();
-
     const input = document.getElementById("name").value;
     const checkBox = document.getElementById("isForGoodWeather").checked;
     setActivities([
@@ -41,9 +40,13 @@ function App() {
     ]);
   }
 
+  const handleDeleteActivity = (id) => {
+    setActivities(activities.filter(activity => activity.id !== id))
+  }
+
   return (
     <div className="App">
-      <List activitiesList={filteredActivities} weather={isGoodWeather} />
+      <List onDeleteActivity={handleDeleteActivity} activitiesList={filteredActivities} weather={isGoodWeather} />
       <Form onAddActivity={handelAddActivity} />
     </div>
   );
