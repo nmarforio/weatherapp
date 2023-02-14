@@ -3,34 +3,14 @@ import Form from "./Components/Form/Form.jsx";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import List from "./Components/List/List";
-import { useEffect, useState } from "react";
+import { useFetch } from "./common/use-fetch";
 
 function App() {
   const [activities, setActivities] = useLocalStorageState("activitie", {
     defaultValue: [],
   });
-  const [isGoodWeather, setIsGoodWeather] = useState({});
 
-  const URL = "https://example-apis.vercel.app/api/weather";
-
-  try {
-    useEffect(() => {
-      getAPI();
-      let intervalId = setInterval(getAPI, 5000);
-      return () => {
-        clearInterval(intervalId);
-      };
-    }, []);
-
-    async function getAPI() {
-      const response = await fetch(URL);
-      const data = await response.json();
-      setIsGoodWeather(data);
-      console.log(data);
-    }
-  } catch (error) {
-    console.log(error);
-  }
+  const isGoodWeather = useFetch("https://example-apis.vercel.app/api/weather");
 
   const filteredActivities = activities.filter(
     (activity) => activity.isForGoodWeather === isGoodWeather.isGoodWeather
@@ -42,12 +22,11 @@ function App() {
     const input = document.getElementById("name");
     const checkBox = document.getElementById("isForGoodWeather").checked;
     setActivities([
-      ...activities,
       { name: input.value, isForGoodWeather: checkBox, id: uid() },
+      ...activities,
     ]);
-    event.target.reset()
-    input.focus()
-
+    event.target.reset();
+    input.focus();
   }
 
   const handleDeleteActivity = (id) => {
