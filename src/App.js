@@ -3,28 +3,34 @@ import Form from "./Components/Form/Form.jsx";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import List from "./Components/List/List";
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 function App() {
   const [activities, setActivities] = useLocalStorageState("activitie", {
     defaultValue: [],
   });
-  const [isGoodWeather, setIsGoodWeather] = useState({})
+  const [isGoodWeather, setIsGoodWeather] = useState({});
 
-  const URL = 'https://example-apis.vercel.app/api/weather'
+  const URL = "https://example-apis.vercel.app/api/weather";
 
-  useEffect(() => {
-    try {
-      async function getAPI() {
-        const response = await fetch(URL)
-        const data = await response.json()
-        setIsGoodWeather(data)
-      }
-      getAPI()
-    } catch (error) {
-      console.log(error)
+  try {
+    useEffect(() => {
+      getAPI();
+      let intervalId = setInterval(getAPI, 5000);
+      return () => {
+        clearInterval(intervalId);
+      };
+    }, []);
+
+    async function getAPI() {
+      const response = await fetch(URL);
+      const data = await response.json();
+      setIsGoodWeather(data);
+      console.log(data);
     }
-  }, [])
+  } catch (error) {
+    console.log(error);
+  }
 
   const filteredActivities = activities.filter(
     (activity) => activity.isForGoodWeather === isGoodWeather.isGoodWeather
@@ -41,12 +47,16 @@ function App() {
   }
 
   const handleDeleteActivity = (id) => {
-    setActivities(activities.filter(activity => activity.id !== id))
-  }
+    setActivities(activities.filter((activity) => activity.id !== id));
+  };
 
   return (
     <div className="App">
-      <List onDeleteActivity={handleDeleteActivity} activitiesList={filteredActivities} weather={isGoodWeather} />
+      <List
+        onDeleteActivity={handleDeleteActivity}
+        activitiesList={filteredActivities}
+        weather={isGoodWeather}
+      />
       <Form onAddActivity={handelAddActivity} />
     </div>
   );
