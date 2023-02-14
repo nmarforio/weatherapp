@@ -1,0 +1,13 @@
+li {
+  background-color: var(--li-bg-color);
+  list-style: none;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+ul {
+  padding: 0;
+}
