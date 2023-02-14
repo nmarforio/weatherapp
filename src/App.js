@@ -2,6 +2,7 @@ import "./App.css";
 import Form from "./Components/Form/Form.jsx";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
+import List from "./Components/List/List";
 
 function App() {
   const [activities, setActivities] = useLocalStorageState("activitie", {
@@ -21,6 +22,7 @@ function App() {
   console.log(activities);
   return (
     <div className="App">
+      <List activitiesList={activities} />
       <Form onAddActivity={handelAddActivity} />
     </div>
   );
