@@ -1,10 +1,11 @@
 import Button from "../Button/Button"
+import './List.css'
 
 const List = ({ activitiesList, weather, onDeleteActivity }) => {
   // console.log(weather)
   return (
     <>
-      <h2>{weather.condition}  {weather.temperature}°C</h2>
+      <h1>{weather.condition}  {weather.temperature}°C</h1>
 
       <h2>{weather.isGoodWeather ? "Go outside" : "Stay Home"}</h2>
       <ul>

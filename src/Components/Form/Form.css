@@ -1,0 +1,23 @@
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+form > h2 {
+  text-align: center;
+}
+
+label {
+  padding: 10px;
+}
+
+input {
+  margin: 5px;
+}
+
+form > button {
+  padding: 5px;
+  width: 25%;
+  align-self: center;
+}

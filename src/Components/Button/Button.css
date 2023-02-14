@@ -1,0 +1,6 @@
+li > button {
+  background-color: var(--li-bg-color);
+  border: none;
+  padding: 10px;
+  color: white;
+}
