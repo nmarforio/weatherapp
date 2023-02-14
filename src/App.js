@@ -38,12 +38,16 @@ function App() {
 
   function handelAddActivity(event) {
     event.preventDefault();
-    const input = document.getElementById("name").value;
+
+    const input = document.getElementById("name");
     const checkBox = document.getElementById("isForGoodWeather").checked;
     setActivities([
       ...activities,
-      { name: input, isForGoodWeather: checkBox, id: uid() },
+      { name: input.value, isForGoodWeather: checkBox, id: uid() },
     ]);
+    event.target.reset()
+    input.focus()
+
   }
 
   const handleDeleteActivity = (id) => {
