@@ -9,6 +9,11 @@ function App() {
     defaultValue: [],
   });
 
+  const isGoodWeather = true;
+  const filteredActivities = activities.filter(
+    (activity) => activity.isForGoodWeather === isGoodWeather
+  );
+
   function handelAddActivity(event) {
     event.preventDefault();
 
@@ -19,10 +24,10 @@ function App() {
       { name: input, isForGoodWeather: checkBox, id: uid() },
     ]);
   }
-  console.log(activities);
+
   return (
     <div className="App">
-      <List activitiesList={activities} />
+      <List activitiesList={filteredActivities} />
       <Form onAddActivity={handelAddActivity} />
     </div>
   );

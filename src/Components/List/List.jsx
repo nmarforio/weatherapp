@@ -1,5 +1,4 @@
 const List = ({ activitiesList }) => {
-  console.log(activitiesList);
   return (
     <ul>
       {activitiesList.map((activity) => (
